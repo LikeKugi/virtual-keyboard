@@ -1,11 +1,11 @@
-const body = document.querySelector("body");
-body.insertAdjacentHTML('afterbegin', `<div class="container">
+<template id="root">
+  <div class="container">
     <div class="display">
-      <textarea class="display__area" name="display" id="display" cols="40" rows="10" ></textarea>
+      <textarea class="display__area" name="display" id="display" cols="100" rows="10" ></textarea>
     </div>
     <div class="keyboard">
-      <div class="keyboard__row row">
-        <button class="keyboard__btn btn" id="key192">\`</button>
+      <div class="keyboard__row">
+        <button class="keyboard__btn btn" id="key192">`</button>
         <button class="keyboard__btn btn" id="key49">1</button>
         <button class="keyboard__btn btn" id="key50">2</button>
         <button class="keyboard__btn btn" id="key51">3</button>
@@ -20,7 +20,7 @@ body.insertAdjacentHTML('afterbegin', `<div class="container">
         <button class="keyboard__btn btn" id="key187">=</button>
         <button class="keyboard__btn btn" id="key8">Backspace</button>
       </div>
-      <div class="keyboard__row row">
+      <div class="keyboard__row">
         <button class="keyboard__btn btn" id="key9">Tab</button>
         <button class="keyboard__btn btn" id="key81">q</button>
         <button class="keyboard__btn btn" id="key87">w</button>
@@ -34,10 +34,10 @@ body.insertAdjacentHTML('afterbegin', `<div class="container">
         <button class="keyboard__btn btn" id="key80">p</button>
         <button class="keyboard__btn btn" id="key219">[</button>
         <button class="keyboard__btn btn" id="key221">]</button>
-        <button class="keyboard__btn btn" id="key220">\\</button>
+        <button class="keyboard__btn btn" id="key220">\</button>
       </div>
-      <div class="keyboard__row row">
-        <button class="keyboard__btn btn" id="key20">CapsLock</button>
+      <div class="keyboard__row">
+        <button class="keyboard__btn btn" id="key20">Caps Lock</button>
         <button class="keyboard__btn btn" id="key65">a</button>
         <button class="keyboard__btn btn" id="key83">s</button>
         <button class="keyboard__btn btn" id="key68">d</button>
@@ -52,7 +52,7 @@ body.insertAdjacentHTML('afterbegin', `<div class="container">
         <button class="keyboard__btn btn" id="key13">Enter</button>
         <button class="keyboard__btn btn" id="key"></button>
       </div>
-      <div class="keyboard__row row">
+      <div class="keyboard__row">
         <button class="keyboard__btn btn" id="key16">Shift</button>
         <button class="keyboard__btn btn" id="key90">z</button>
         <button class="keyboard__btn btn" id="key88">x</button>
@@ -68,7 +68,7 @@ body.insertAdjacentHTML('afterbegin', `<div class="container">
         <button class="keyboard__btn btn" id="key"></button>
         <button class="keyboard__btn btn" id="key"></button>
       </div>
-      <div class="keyboard__row row">
+      <div class="keyboard__row">
         <button class="keyboard__btn btn" id="key17">Ctrl</button>
         <button class="keyboard__btn btn" id="key91">Win</button>
         <button class="keyboard__btn btn" id="key18">Alt</button>
@@ -85,4 +85,5 @@ body.insertAdjacentHTML('afterbegin', `<div class="container">
         <button class="keyboard__btn btn"></button>
       </div>
     </div>
-  </div>`)
+  </div>
+</template>

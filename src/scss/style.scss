@@ -1,0 +1,25 @@
+body {
+  font-size: 10px;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.row {
+  display: flex;
+  &:not(:last-of-type) {
+    margin-bottom: 1rem;
+  }
+}
+.display {
+  &__area {
+    width: 90%;
+  }
+}
+.btn{
+  padding: 0.7rem;
+  font-size: 1.5rem;
+  &:not(:last-of-type) {
+    margin-right: 0.5rem;
+  }
+}
