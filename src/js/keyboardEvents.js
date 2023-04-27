@@ -9,9 +9,9 @@ export default function (elem) {
     console.log(VALUABLE_BUTTONS);
     elem.addEventListener('keydown', (e) => {
         e.preventDefault();
-        const keyCode = e.keyCode;
+        const keyCode = e.code;
         console.log(keyCode);
-        const btn = document.querySelector(`#key${keyCode}`);
+        const btn = document.querySelector(`#${keyCode}`);
         btn.classList.add('active');
         // if (!VALUABLE_BUTTONS.has(keyCode)) return;
         const textArea = document.querySelector('.display__area');
@@ -26,8 +26,8 @@ export default function (elem) {
         textArea.value += btn.textContent;
     });
     elem.addEventListener('keyup', (e) => {
-        const keyCode = e.keyCode;
+        const keyCode = e.code;
         console.log(keyCode);
-        document.querySelector(`#key${keyCode}`).classList.remove('active');
+        document.querySelector(`#${keyCode}`).classList.remove('active');
     });
 }
