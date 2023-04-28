@@ -1,5 +1,4 @@
 export default function (elem) {
-    console.log(elem);
     elem.insertAdjacentHTML('afterbegin', `<div class="container">
     <div class="display">
       <h1><label for="display">Virtual Keyboard Display</label></h1>
@@ -68,7 +67,7 @@ export default function (elem) {
         <button class="keyboard__btn btn" id="Slash">/</button>
         <button class="keyboard__btn btn" id="ShiftRight">Shift</button>
         <button class="keyboard__btn btn" id="ArrowUp">↑</button>
-        <button class="keyboard__btn btn" id="key"></button>
+        <button class="keyboard__btn btn" id="Delete">Del</button>
       </div>
       <div class="keyboard__row row">
         <button class="keyboard__btn btn" id="ControlLeft">Ctrl</button>
@@ -80,7 +79,7 @@ export default function (elem) {
         <button class="keyboard__btn btn" id="ArrowLeft">←</button>
         <button class="keyboard__btn btn" id="ArrowDown">↓</button>
         <button class="keyboard__btn btn" id="ArrowRight">→</button>
-        <button class="keyboard__btn btn" id="key46">Del</button>
+        
         <button class="keyboard__btn btn"></button>
         <button class="keyboard__btn btn"></button>
         <button class="keyboard__btn btn"></button>

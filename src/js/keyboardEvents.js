@@ -1,33 +1,37 @@
-let i = 48;
-const VALUABLE_BUTTONS = new Set();
-[...Array(10)].map(el => i++).forEach(el => VALUABLE_BUTTONS.add(el));
-i = 65;
-[...Array(26)].map(el => i++).forEach(el => VALUABLE_BUTTONS.add(el));
-[192, 189, 187, 219, 221, 220, 186, 222, 188, 190, 191].forEach(el => VALUABLE_BUTTONS.add(el))
+import Textfield from "./Textfield.js";
 
-export default function (elem) {
-    console.log(VALUABLE_BUTTONS);
+
+export default function (elem, state) {
+    const textfield = new Textfield();
+    textfield.createState(state);
     elem.addEventListener('keydown', (e) => {
-        e.preventDefault();
-        const keyCode = e.code;
-        console.log(keyCode);
-        const btn = document.querySelector(`#${keyCode}`);
-        btn.classList.add('active');
-        // if (!VALUABLE_BUTTONS.has(keyCode)) return;
-        const textArea = document.querySelector('.display__area');
-        const startPosition = textArea.selectionStart;
-        console.log(startPosition);
-        const endPosition = textArea.selectionEnd;
-        console.log(endPosition);
-        if (keyCode === 13) {
-            textArea.value += '\r\n';
-            return;
-        }
-        textArea.value += btn.textContent;
+        onPress(e, textfield);
     });
     elem.addEventListener('keyup', (e) => {
         const keyCode = e.code;
-        console.log(keyCode);
         document.querySelector(`#${keyCode}`).classList.remove('active');
+        console.log(state.readStorage());
+    });
+    elem.addEventListener('click', (e) => {
+        if (!e.target.closest('.btn')) return;
+        onMousePress(e, textfield);
     });
 }
+
+function onPress(event, textfield) {
+    event.preventDefault();
+    const keyCode = event.code;
+    textfield.onInput(keyCode);
+    const btn = document.querySelector(`#${keyCode}`);
+    console.log(btn);
+    btn.classList.add('active');
+}
+
+function onMousePress(event, textfield) {
+    const btn = event.target;
+    const keyCode = btn.id;
+    textfield.onInput(keyCode);
+    // btn.classList.add('active');
+}
+
+
