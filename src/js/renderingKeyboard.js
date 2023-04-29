@@ -1,136 +1,20 @@
-export default class Textfield {
-    VALUABLE_BUTTONS;
-    STATE_BUTTONS;
-
-    constructor(state, {Lang, Shift, CapsLock, Alt, Ctrl, Meta}, field = '#display') {
-        this.field = document.querySelector(field);
-        this.content = [];
-        this.VALUABLE_BUTTONS = this.#createValuableButtons();
-        this.STATE_BUTTONS = this.#createStateButtons();
-        this.state = state;
-        this.Lang = Lang || 'Eng';
-        this.Shift = Shift || false;
-        this.CapsLock = CapsLock || false;
-        this.Alt = Alt || false;
-        this.Ctrl = Ctrl || false;
-        this.Meta = Meta || false;
-    }
-
-    pushState() {
-        this.state.writeStorage(this.Lang, this.Shift, this.CapsLock, this.Alt, this.Ctrl, this.Meta);
-    }
-
-    getContent() {
-        return this.content.join('');
-    }
-
-    push(value, position = this.content.length - 1) {
-        console.log('pushing', value)
-        if (position === this.content.length - 1) {
-            this.content.push(value);
-        } else if (this.insertMode) {
-            this.content[position + 1] = value;
-        } else {
-            this.content = this.content.splice(position, 0, value);
+export default function(state) {
+    const {Lang, Shift, CapsLock} = state.readStorage();
+    const valuables = createMap();
+    const keyboardButtons = document.querySelectorAll('.btn');
+    let modifier = Lang;
+    if (CapsLock) {
+        if (!Shift) {
+            modifier = `CapsLock${Lang}`;
         }
-        return this.getContent();
+    } else if (Shift) {
+        modifier = `Shift${Lang}`;
     }
-
-    del(position = this.content.length - 1) {
-        this.content = [...this.content.slice(0, position), ...this.content.slice(position + 1)];
-        return this.getContent();
-    }
-
-    backspace(position = this.content.length - 1) {
-        this.content = [...this.content.slice(0, position - 1), ...this.content.slice(position)];
-        return this.getContent();
-    }
-
-    changeLanguage() {
-        this.Lang = this.Lang === 'Eng' ? 'Rus' : 'Eng';
-    }
-
-    setMetaKeys(keyCode) {
-        const metaInfo = this.STATE_BUTTONS.get(keyCode);
-        this[metaInfo] = !this[metaInfo];
-        if (this.Ctrl && this.Alt) {
-            this.changeLanguage();
-            this.offMetaKeys();
-            return;
+    keyboardButtons.forEach(btn => {
+        if (valuables.get(btn.id)) {
+            btn.textContent = valuables.get(btn.id)[modifier];
         }
-        for (let mt of ['Meta', 'Ctrl', 'Alt', 'Shift']) {
-            if (mt === metaInfo) continue;
-            this[mt] = false;
-        }
-        this.pushState();
-    }
-
-    offMetaKeys() {
-        this.Alt = false;
-        this.Meta = false;
-        this.Ctrl = false;
-        this.Shift = false;
-
-        this.pushState();
-    }
-
-    setValuablesKeys(keyCode) {
-        let modifier = this.Lang;
-        if (this.CapsLock) {
-            if (!this.Shift) {
-                modifier = `CapsLock${this.Lang}`;
-            }
-        } else if (this.Shift) {
-            modifier = `Shift${this.Lang}`;
-        }
-        const pushing = this.VALUABLE_BUTTONS.get(keyCode)[modifier];
-        this.field.value = this.push(pushing);
-
-    }
-
-    onInput(keyCode) {
-        if (this.VALUABLE_BUTTONS.has(keyCode)) {
-            this.setValuablesKeys(keyCode);
-            this.offMetaKeys();
-        } else if (this.STATE_BUTTONS.has(keyCode)) {
-            this.setMetaKeys(keyCode);
-        } else if (keyCode === 'Backspace') {
-            const position = this.field.selectionStart;
-            console.log(position)
-            this.field.value = this.backspace(position);
-            this.offMetaKeys();
-        } else if (keyCode === 'Delete') {
-            const position = this.field.selectionStart;
-            this.field.value = this.del(position);
-            this.offMetaKeys();
-        }
-    }
-
-    checkUpStates(keyCode) {
-        if (keyCode === 'CapsLock') return;
-        if (this.STATE_BUTTONS.has(keyCode)) {
-            const metaInfo = this.STATE_BUTTONS.get(keyCode);
-            this[metaInfo] = !this[metaInfo];
-            this.pushState();
-        }
-    }
-
-    #createValuableButtons() {
-        return createMap();
-    }
-
-    #createStateButtons() {
-        return new Map([
-            ['CapsLock', 'CapsLock'],
-            ['ShiftLeft', 'Shift'],
-            ['ShiftRight', 'Shift'],
-            ['ControlLeft', 'Ctrl'],
-            ['ControlRight', 'Ctrl'],
-            ['AltLeft', 'Alt'],
-            ['AltRight', 'Alt'],
-            ['MetaLeft', 'Meta']
-        ]);
-    }
+    })
 }
 
 function createMap() {
@@ -511,30 +395,6 @@ function createMap() {
             ShiftRus: '/',
             CapsLockEng: '\\',
             CapsLockRus: '\\',
-        },
-        Tab: {
-            Eng: '\t',
-            Rus: '\t',
-            ShiftEng: '\t',
-            ShiftRus: '\t',
-            CapsLockEng: '\t',
-            CapsLockRus: '\t',
-        },
-        Space: {
-            Eng: ' ',
-            Rus: ' ',
-            ShiftEng: ' ',
-            ShiftRus: ' ',
-            CapsLockEng: ' ',
-            CapsLockRus: ' ',
-        },
-        Enter: {
-            Eng: '\r\n',
-            Rus: '\r\n',
-            ShiftEng: '\r\n',
-            ShiftRus: '\r\n',
-            CapsLockEng: '\r\n',
-            CapsLockRus: '\r\n',
         },
     }
     for (const key in valuables) {

@@ -3,11 +3,11 @@ export default function () {
         readStorage: function () {
             return {
                 Lang: localStorage.getItem('Lang'),
-                Shift: localStorage.getItem('Shift'),
-                CapsLock: localStorage.getItem('CapsLock'),
-                Alt: localStorage.getItem('Alt'),
-                Ctrl: localStorage.getItem('Ctrl'),
-                Meta: localStorage.getItem('Meta'),
+                Shift: localStorage.getItem('Shift') === 'true',
+                CapsLock: localStorage.getItem('CapsLock') === 'true',
+                Alt: localStorage.getItem('Alt') === 'true',
+                Ctrl: localStorage.getItem('Ctrl') === 'true',
+                Meta: localStorage.getItem('Meta') === 'true',
             }
         },
         writeStorage: function (Lang, Shift, CapsLock, Alt, Ctrl, Meta) {
