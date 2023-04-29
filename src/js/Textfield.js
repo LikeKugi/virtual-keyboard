@@ -28,8 +28,6 @@ export default class Textfield {
         console.log('pushing', value)
         if (position === this.content.length - 1) {
             this.content.push(value);
-        } else if (this.insertMode) {
-            this.content[position + 1] = value;
         } else {
             this.content = this.content.splice(position, 0, value);
         }
