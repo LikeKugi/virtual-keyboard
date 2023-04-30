@@ -1,1 +1,3 @@
 node_modules/
+src/js/keycodes.js
+src/templates/keyboard.html

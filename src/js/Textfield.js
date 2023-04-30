@@ -25,11 +25,10 @@ export default class Textfield {
     }
 
     push(value, position = this.content.length - 1) {
-        console.log('pushing', value)
-        if (position === this.content.length - 1) {
+        if (position === this.content.length || position === 0) {
             this.content.push(value);
         } else {
-            this.content = this.content.splice(position, 0, value);
+            this.content = [...this.content.slice(0, position), value, ...this.content.slice(position)];
         }
         return this.getContent();
     }
@@ -68,11 +67,10 @@ export default class Textfield {
         this.Meta = false;
         this.Ctrl = false;
         this.Shift = false;
-
         this.pushState();
     }
 
-    setValuablesKeys(keyCode) {
+    setValuablesKeys(keyCode, position) {
         let modifier = this.Lang;
         if (this.CapsLock) {
             if (!this.Shift) {
@@ -82,23 +80,21 @@ export default class Textfield {
             modifier = `Shift${this.Lang}`;
         }
         const pushing = this.VALUABLE_BUTTONS.get(keyCode)[modifier];
-        this.field.value = this.push(pushing);
+        this.field.value = this.push(pushing, position);
 
     }
 
     onInput(keyCode) {
+        const position = this.field.selectionStart;
         if (this.VALUABLE_BUTTONS.has(keyCode)) {
-            this.setValuablesKeys(keyCode);
+            this.setValuablesKeys(keyCode, position);
             this.offMetaKeys();
         } else if (this.STATE_BUTTONS.has(keyCode)) {
             this.setMetaKeys(keyCode);
         } else if (keyCode === 'Backspace') {
-            const position = this.field.selectionStart;
-            console.log(position)
             this.field.value = this.backspace(position);
             this.offMetaKeys();
         } else if (keyCode === 'Delete') {
-            const position = this.field.selectionStart;
             this.field.value = this.del(position);
             this.offMetaKeys();
         }
@@ -108,7 +104,7 @@ export default class Textfield {
         if (keyCode === 'CapsLock') return;
         if (this.STATE_BUTTONS.has(keyCode)) {
             const metaInfo = this.STATE_BUTTONS.get(keyCode);
-            this[metaInfo] = !this[metaInfo];
+            this[metaInfo] = false;
             this.pushState();
         }
     }
@@ -533,6 +529,38 @@ function createMap() {
             ShiftRus: '\r\n',
             CapsLockEng: '\r\n',
             CapsLockRus: '\r\n',
+        },
+        ArrowUp: {
+            Eng: '↑',
+            Rus: '↑',
+            ShiftEng: '↑',
+            ShiftRus: '↑',
+            CapsLockEng: '↑',
+            CapsLockRus: '↑',
+        },
+        ArrowLeft: {
+            Eng: '←',
+            Rus: '←',
+            ShiftEng: '←',
+            ShiftRus: '←',
+            CapsLockEng: '←',
+            CapsLockRus: '←',
+        },
+        ArrowDown: {
+            Eng: '↓',
+            Rus: '↓',
+            ShiftEng: '↓',
+            ShiftRus: '↓',
+            CapsLockEng: '↓',
+            CapsLockRus: '↓',
+        },
+        ArrowRight: {
+            Eng: '→',
+            Rus: '→',
+            ShiftEng: '→',
+            ShiftRus: '→',
+            CapsLockEng: '→',
+            CapsLockRus: '→',
         },
     }
     for (const key in valuables) {

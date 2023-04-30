@@ -5,15 +5,39 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 }
+.keyboard {
+  background-color: antiquewhite;
+  padding: 10px 15px;
+}
 .row {
-  display: flex;
+  display: grid;
   &:not(:last-of-type) {
     margin-bottom: 1rem;
   }
+  &--digit {
+    grid-template-columns: repeat(13, 1fr) 2fr;
+  }
+  &--tab {
+    grid-template-columns: 1.5fr repeat(12, 1fr) 1.5fr;
+  }
+  &--caps {
+    grid-template-columns: 2fr repeat(11, 1fr) 2fr;
+  }
+  &--shift {
+    grid-template-columns: 2.5fr repeat(10, 1fr) 3fr repeat(2, 1fr);
+  }
+  &--ctrl {
+    grid-template-columns: repeat(3, 1.25fr) 8.5fr repeat(2, 1.25fr) repeat(3, 1fr);
+  }
 }
 .display {
+  margin-bottom: 20px;
+  &__title {
+    font-size: 3rem;
+    text-align: center;
+  }
   &__area {
-    width: 90%;
+    width: calc(100% - 10px);
   }
 }
 .btn{
@@ -24,6 +48,9 @@ body {
   }
   &:hover {
     background-color: lightcyan;
+  }
+  &--meta {
+    background-color: darkgray;
   }
 }
 .active {

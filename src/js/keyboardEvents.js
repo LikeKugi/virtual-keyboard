@@ -79,6 +79,5 @@ function getKeyboardButtons() {
     const out = new Set();
     const buttons = document.querySelectorAll('.btn');
     buttons.forEach(btn => out.add(btn.id));
-    console.log(out);
     return out;
 }
