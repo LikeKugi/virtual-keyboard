@@ -56,3 +56,11 @@ body {
 .active {
   background-color: lightcyan;
 }
+.help {
+  &__list {
+    list-style-type: none;
+  }
+  &__item {
+    font-size: 1.5rem;
+  }
+}
