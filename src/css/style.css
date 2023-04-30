@@ -1,0 +1,36 @@
+body {
+  font-size: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+.row:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+
+.display__area {
+  width: 90%;
+}
+
+.btn {
+  padding: 0.7rem;
+  font-size: 1.5rem;
+}
+.btn:not(:last-of-type) {
+  margin-right: 0.5rem;
+}
+.btn:hover {
+  background-color: lightcyan;
+}
+
+.active {
+  background-color: lightcyan;
+}
+
+/*# sourceMappingURL=style.css.map */
