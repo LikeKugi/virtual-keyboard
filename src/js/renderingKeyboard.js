@@ -2,7 +2,7 @@ export default function(state) {
     const {Lang, Shift, CapsLock} = state.readStorage();
     const valuables = createMap();
     const keyboardButtons = document.querySelectorAll('.btn');
-    let modifier = Lang;
+    let modifier = Lang || 'Eng';
     if (CapsLock) {
         if (!Shift) {
             modifier = `CapsLock${Lang}`;

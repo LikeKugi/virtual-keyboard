@@ -63,4 +63,11 @@ body {
   background-color: lightcyan;
 }
 
+.help__list {
+  list-style-type: none;
+}
+.help__item {
+  font-size: 1.5rem;
+}
+
 /*# sourceMappingURL=style.css.map */
