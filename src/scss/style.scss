@@ -8,9 +8,11 @@ body {
 .keyboard {
   background-color: antiquewhite;
   padding: 10px 15px;
+  border-radius: 10px;
 }
 .row {
   display: grid;
+  gap: 0.5rem;
   &:not(:last-of-type) {
     margin-bottom: 1rem;
   }
@@ -43,18 +45,40 @@ body {
 .btn{
   padding: 0.7rem;
   font-size: 1.5rem;
-  &:not(:last-of-type) {
-    margin-right: 0.5rem;
-  }
+  transition: background-color 0.4s;
+
   &:hover {
     background-color: lightcyan;
+  }
+  &:active {
+    animation: borders 0.2s ease-in-out;
+    border-radius: 50%;
   }
   &--meta {
     background-color: darkgray;
   }
 }
+
+@media screen and (max-width: 800px){
+
+  .btn {
+    font-size: 1.5em;
+  }
+
+}
 .active {
   background-color: lightcyan;
+  animation: borders 0.2s ease-in-out;
+  border-radius: 50%;
+}
+
+@keyframes borders {
+  from {
+    border-radius: 0;
+  }
+  to {
+    border-radius: 50%;
+  }
 }
 .help {
   &__list {

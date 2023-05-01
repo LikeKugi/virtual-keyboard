@@ -10,14 +10,20 @@ export default function (elem, state) {
     elem.addEventListener('keydown', (e) => {
         const keyboardButtons = getKeyboardButtons();
         const keyCode = e.code;
-        if (!keyboardButtons.has(keyCode)) return;
+        if (!keyboardButtons.has(keyCode)) {
+            e.preventDefault();
+            return;
+        }
         onPress(e, textfield);
         renderingKeyboard(state);
     });
     elem.addEventListener('keyup', (e) => {
         const keyboardButtons = getKeyboardButtons();
         const keyCode = e.code;
-        if (!keyboardButtons.has(keyCode)) return;
+        if (!keyboardButtons.has(keyCode)) {
+            e.preventDefault();
+            return;
+        }
         onKeyup(e, textfield);
         activateStateButtons(state, buttonsStates);
         renderingKeyboard(state);
