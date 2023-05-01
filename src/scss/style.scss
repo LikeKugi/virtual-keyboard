@@ -1,48 +1,61 @@
 body {
   font-size: 10px;
 }
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .keyboard {
   background-color: antiquewhite;
   padding: 10px 15px;
   border-radius: 10px;
 }
+
 .row {
   display: grid;
   gap: 0.5rem;
+
   &:not(:last-of-type) {
     margin-bottom: 1rem;
   }
+
   &--digit {
     grid-template-columns: repeat(13, 1fr) 2fr;
   }
+
   &--tab {
     grid-template-columns: 1.5fr repeat(12, 1fr) 1.5fr;
   }
+
   &--caps {
     grid-template-columns: 2fr repeat(11, 1fr) 2fr;
   }
+
   &--shift {
     grid-template-columns: 2.5fr repeat(10, 1fr) 3fr repeat(2, 1fr);
   }
+
   &--ctrl {
     grid-template-columns: repeat(3, 1.25fr) 8.5fr repeat(2, 1.25fr) repeat(3, 1fr);
   }
 }
+
 .display {
   margin-bottom: 20px;
+
   &__title {
     font-size: 3rem;
     text-align: center;
   }
+
   &__area {
     width: calc(100% - 10px);
   }
 }
-.btn{
+
+.btn {
   padding: 0.7rem;
   font-size: 1.5rem;
   transition: background-color 0.4s;
@@ -50,40 +63,50 @@ body {
   &:hover {
     background-color: lightcyan;
   }
+
   &:active {
     animation: borders 0.2s ease-in-out;
     border-radius: 50%;
   }
+
   &--meta {
     background-color: darkgray;
   }
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
 
   .btn {
     font-size: 1.5em;
   }
 
 }
+
+/* eslint-disable */
 .active {
   background-color: lightcyan;
   animation: borders 0.2s ease-in-out;
   border-radius: 50%;
 }
 
+/* eslint-enable */
+
 @keyframes borders {
+
   from {
     border-radius: 0;
   }
   to {
     border-radius: 50%;
   }
+
 }
+
 .help {
   &__list {
     list-style-type: none;
   }
+
   &__item {
     font-size: 1.5rem;
   }
