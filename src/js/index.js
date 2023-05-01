@@ -1,4 +1,3 @@
-// import Textfield from "./Textfield.js";
 import storage from "./storage.js";
 import insertKeyboard from "./insertKeyboard.js";
 import keyboardEvents from "./keyboardEvents.js";

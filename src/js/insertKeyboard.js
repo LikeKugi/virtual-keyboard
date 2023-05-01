@@ -83,6 +83,7 @@ export default function (elem) {
     <div class="help">
     <ul class="help__list">
       <li class="help__item">Ctrl + Alt to change the language</li>
+      <li class="help__item">Windows keyboard</li>
     </ul>
     </div>
   </div>`)
